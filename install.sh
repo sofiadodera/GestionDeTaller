@@ -1,3 +1,7 @@
 #!/bin/bash
-pyenv global 3.9.6  # Cambia a una versión específica si es necesario
+set -o errexit
+
 pip install -r requirements.txt
+
+python manage.py collectstatic --no-input
+python manage.py migrate
