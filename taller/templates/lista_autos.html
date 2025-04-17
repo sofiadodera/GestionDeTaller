@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Autos{% endblock %}
+
+{% block content %}
+<h2>Lista de Autos</h2>
+<table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
+    <thead>
+        <tr>
+            <th>Patente</th>
+            <th>Modelo</th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for auto in autos %}
+        <tr>
+            <td>{{ auto.patente }}</td>
+            <td>{{ auto.modelo }}</td>
+            <td>
+                <a href="{% url 'historial_reparaciones' auto.patente %}">Ver historial</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'crear_auto' %}">
+    <button>Agregar nuevo auto</button>
+</a>
+<a href="{% url 'homepage' %}">
+    <button>Volver</button>
+</a>
+{% endblock %}

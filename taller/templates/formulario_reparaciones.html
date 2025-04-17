@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Registrar Reparación{% endblock %}
+
+{% block content %}
+<h2>Registrar Reparación para {{ auto.modelo }} ({{ auto.patente }})</h2>
+<form method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar Reparación</button>
+</form>
+<a href="{% url 'historial_reparaciones' auto.patente %}">
+    <button>Volver al historial de reparaciones</button>
+</a>
+{% endblock %}
+

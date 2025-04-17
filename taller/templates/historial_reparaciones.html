@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Historial de Reparaciones{% endblock %}
+
+{% block content %}
+<h2>Historial de Reparaciones para {{ auto.modelo }} ({{ auto.patente }})</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Descripción</th>
+            <th>Costo</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for reparacion in reparaciones %}
+        <tr>
+            <td>{{ reparacion.fecha }}</td>
+            <td>{{ reparacion.descripcion }}</td>
+            <td>${{ reparacion.costo }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No se encontraron reparaciones registradas.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div style="margin-top: 1rem;">
+    <a href="{% url 'crear_reparacion' auto.patente %}">
+        <button>Agregar Nueva Reparación</button>
+    </a>
+    <a href="{% url 'lista_autos' %}">
+        <button>Volver a Lista de Autos</button>
+    </a>
+</div>
+{% endblock %}
+
